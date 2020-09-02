@@ -4,6 +4,8 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const ScheduleController = use('App/Controllers/Http/ScheduleController')
+
 const Class = use('App/Models/Class')
 
 class ClassController {
@@ -24,11 +26,16 @@ class ClassController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store(data, user_id) {
+  async store({ request,  auth }) {
+    const dataClass = await request.only(['subject', 'cost'])
+    // const dataSchedule = await request.only(['schedule'])
 
-    // const classCreated = await Class.create({ user_id , ...data })
+    const classCreated = await Class.create({ user_id: auth.user.id, ...dataClass })
 
-    console.log('store', user_id, data)
+    // const scheduleCtr = new ScheduleController()
+    // await scheduleCtr.store(dataSchedule, classCreated.id)
+
+    return classCreated;
   }
 
   /**

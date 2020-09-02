@@ -4,14 +4,11 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-/**
- * Resourceful controller for interacting with schedules
- */
+// const convertHourToMinutes = use('App/Utils/ConvertHourToMinutes');
+
+const Schedule = use('App/Models/Schedule');
 class ScheduleController {
   /**
-   * Show a list of all schedules.
-   * GET schedules
-   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
@@ -21,32 +18,25 @@ class ScheduleController {
   }
 
   /**
-   * Render a form to be used for creating a new schedule.
-   * GET schedules/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
-
-  /**
-   * Create/save a new schedule.
-   * POST schedules
-   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store(dataSchedule, classes_id) {
+    // const classesSchedule = dataSchedule.map((scheduleItem) => ({
+    //   week_day: scheduleItem.week_day,
+    //   from: convertHourToMinutes(scheduleItem.from),
+    //   to: convertHourToMinutes(scheduleItem.to),
+    // }));
+
+    console.log(dataSchedule);
+
+    // const scheduleCreated = await Schedule.create(classes_id, {...classesSchedule });
+
+    // return scheduleCreated;
   }
 
   /**
-   * Display a single schedule.
-   * GET schedules/:id
-   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
@@ -56,21 +46,6 @@ class ScheduleController {
   }
 
   /**
-   * Render a form to update an existing schedule.
-   * GET schedules/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update schedule details.
-   * PUT or PATCH schedules/:id
-   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
@@ -79,9 +54,6 @@ class ScheduleController {
   }
 
   /**
-   * Delete a schedule with id.
-   * DELETE schedules/:id
-   *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response

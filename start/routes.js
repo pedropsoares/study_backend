@@ -19,3 +19,13 @@ const Route = use('Route')
 Route.post('/user/register', 'UserController.register');
 
 Route.post('/user/login', 'AuthController.authenticate');
+
+Route.get('/classes', 'ClassController.index');
+
+Route.group(() => {
+  Route.resource('tweets', 'TweetController')
+    .apiOnly()
+    .except('update')
+}).middleware('auth')
+
+Route.post('/classes', 'ClassController.store').middleware('auth');
