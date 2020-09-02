@@ -4,7 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-// const convertHourToMinutes = use('App/Utils/ConvertHourToMinutes');
+const convert = use('App/utils/converthourToMinutes');
 
 const Schedule = use('App/Models/Schedule');
 class ScheduleController {
@@ -23,17 +23,20 @@ class ScheduleController {
    * @param {Response} ctx.response
    */
   async store(dataSchedule, classes_id) {
-    // const classesSchedule = dataSchedule.map((scheduleItem) => ({
-    //   week_day: scheduleItem.week_day,
-    //   from: convertHourToMinutes(scheduleItem.from),
-    //   to: convertHourToMinutes(scheduleItem.to),
-    // }));
+    const utilConvert = new convert();
 
-    console.log(dataSchedule);
+    const classesSchedule = dataSchedule.schedule.map((scheduleItem) => ({
+      classes_id,
+      week_day: scheduleItem.week_day,
+      from: parseInt(utilConvert.convertHourToMinutes(scheduleItem.from)),
+      to: parseInt(utilConvert.convertHourToMinutes(scheduleItem.to))
+    }));
 
-    // const scheduleCreated = await Schedule.create(classes_id, {...classesSchedule });
+    const Created = await classesSchedule.map((scheduleClasses) => ({
+      scheduleCreated: Schedule.create({ ...scheduleClasses })
+    }))
 
-    // return scheduleCreated;
+    return Created;
   }
 
   /**

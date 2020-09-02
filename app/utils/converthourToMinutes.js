@@ -1,7 +1,9 @@
-const convertHourToMinutes = (time) => {
-  const [hour, minutes] = time.split(':').map(Number);
-  const timeInMinutes = (hour * 60) + minutes;
-  return timeInMinutes;
-};
+class Convert {
+  convertHourToMinutes (time) {
+    const [hour, minutes] = time.split(':').map(Number);
+    const timeInMinutes = (hour * 60) + minutes;
+    return timeInMinutes;
+  };
+}
 
-export default convertHourToMinutes;
+module.exports = Convert;

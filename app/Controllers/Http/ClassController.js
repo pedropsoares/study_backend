@@ -28,12 +28,12 @@ class ClassController {
    */
   async store({ request,  auth }) {
     const dataClass = await request.only(['subject', 'cost'])
-    // const dataSchedule = await request.only(['schedule'])
+    const dataSchedule = await request.only(['schedule'])
 
     const classCreated = await Class.create({ user_id: auth.user.id, ...dataClass })
 
-    // const scheduleCtr = new ScheduleController()
-    // await scheduleCtr.store(dataSchedule, classCreated.id)
+    const scheduleCtr = new ScheduleController()
+    await scheduleCtr.store(dataSchedule, classCreated.id)
 
     return classCreated;
   }
