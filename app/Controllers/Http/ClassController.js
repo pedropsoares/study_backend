@@ -15,8 +15,10 @@ class ClassController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index () {
-    const classes = await Class.all();
+  async index() {
+    const classes = await Class.query()
+      .with('schedules')
+      .fetch();
 
     return classes;
   }
@@ -26,7 +28,7 @@ class ClassController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request,  auth }) {
+  async store({ request, auth }) {
     const dataClass = await request.only(['subject', 'cost'])
     const dataSchedule = await request.only(['schedule'])
 
@@ -47,7 +49,7 @@ class ClassController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show({ params, request, response, view }) {
   }
 
   /**
@@ -55,7 +57,7 @@ class ClassController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update({ params, request, response }) {
   }
 
   /**
@@ -63,7 +65,7 @@ class ClassController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ params, request, response }) {
   }
 }
 

@@ -14,7 +14,7 @@ class ScheduleController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index({ request, response, view }) {
   }
 
   /**
@@ -22,18 +22,18 @@ class ScheduleController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store(dataSchedule, classes_id) {
+  async store(dataSchedule, class_id) {
     const utilConvert = new convert();
 
     const classesSchedule = dataSchedule.schedule.map((scheduleItem) => ({
-      classes_id,
+      class_id,
       week_day: scheduleItem.week_day,
       from: parseInt(utilConvert.convertHourToMinutes(scheduleItem.from)),
       to: parseInt(utilConvert.convertHourToMinutes(scheduleItem.to))
     }));
 
     const Created = await classesSchedule.map((scheduleClasses) => ({
-      scheduleCreated: Schedule.create({ ...scheduleClasses })
+      scheduleCreated: Schedule.findOrCreate({ ...scheduleClasses })
     }))
 
     return Created;
@@ -45,7 +45,7 @@ class ScheduleController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show({ params, request, response, view }) {
   }
 
   /**
@@ -53,7 +53,7 @@ class ScheduleController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update({ params, request, response }) {
   }
 
   /**
@@ -61,7 +61,7 @@ class ScheduleController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ params, request, response }) {
   }
 }
 

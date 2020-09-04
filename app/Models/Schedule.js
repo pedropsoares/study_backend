@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Schedule extends Model {
+  class() {
+    return this.belongsTo("App/Models/Class")
+  }
 }
 
 module.exports = Schedule

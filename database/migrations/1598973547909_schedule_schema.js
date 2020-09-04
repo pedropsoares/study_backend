@@ -12,7 +12,7 @@ class ScheduleSchema extends Schema {
       table.integer('from').notNullable();
       table.integer('to').notNullable();
 
-      table.integer('classes_id')
+      table.integer('class_id')
         .notNullable()
         .references('id')
         .inTable('classes')

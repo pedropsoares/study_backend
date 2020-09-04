@@ -22,10 +22,4 @@ Route.post('/user/login', 'AuthController.authenticate');
 
 Route.get('/classes', 'ClassController.index');
 
-Route.group(() => {
-  Route.resource('tweets', 'TweetController')
-    .apiOnly()
-    .except('update')
-}).middleware('auth')
-
 Route.post('/classes', 'ClassController.store').middleware('auth');
