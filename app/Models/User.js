@@ -16,8 +16,8 @@ class User extends Model {
     })
   }
 
-  static get visible() {
-    return ['username', 'email', 'whatsapp']
+  static get hidden() {
+    return ['password', 'created_at', 'updated_at']
   }
 
   tokens() {

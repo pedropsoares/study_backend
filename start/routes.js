@@ -17,8 +17,10 @@
 const Route = use('Route')
 
 Route.post('/user/register', 'UserController.register');
+Route.put('/user', 'UserController.update').middleware('auth');
 
 Route.post('/user/login', 'AuthController.authenticate');
+
 
 Route.get('/classes', 'ClassController.index');
 
