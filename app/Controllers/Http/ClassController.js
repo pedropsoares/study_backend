@@ -17,6 +17,7 @@ class ClassController {
    */
   async index() {
     const classes = await Class.query()
+      .with('user')
       .with('schedules')
       .fetch();
 
