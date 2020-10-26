@@ -21,7 +21,6 @@ Route.put('/user', 'UserController.update').middleware('auth');
 
 Route.post('/user/login', 'AuthController.authenticate');
 
-
 Route.get('/classes', 'ClassController.index');
 
 Route.post('/classes', 'ClassController.store').middleware('auth');
