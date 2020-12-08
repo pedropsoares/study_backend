@@ -21,6 +21,8 @@ class ClassController {
       .with('schedules')
       .fetch();
 
+      console.log(classes.toJSON())
+
     return classes;
   }
 

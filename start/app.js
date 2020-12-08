@@ -24,7 +24,7 @@ const providers = [
 |--------------------------------------------------------------------------
 |
 | Ace providers are required only when running ace commands. For example
-| Providers for migrations, tests etc.
+| Providers for s, tests etc.
 |
 */
 const aceProviders = [
